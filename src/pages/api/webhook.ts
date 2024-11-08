@@ -94,10 +94,10 @@ const handleMessage = async (
 };
 
 const handler: NextApiHandler = async (req, res) => {
-  console.log("> Incoming message", {
-    query: req.query,
-    body: req.body as unknown,
-  });
+  console.log(
+    "> Incoming message",
+    JSON.stringify({ query: req.query, body: req.body as unknown }, null, 2),
+  );
 
   if (req.method === "GET") {
     const values = whatsAppQuerySchema.parse(req.query);
