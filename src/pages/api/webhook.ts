@@ -35,14 +35,28 @@ const whatsAppMessageSchema = z
       })
       .optional(),
     from: z.string(),
+    text: z
+      .object({
+        body: z.string(),
+      })
+      .optional(),
   })
   .superRefine((val, ctx) => {
-    if (val.type === "audio" && !val.audio)
-      return ctx.addIssue({
+    if (val.type === "audio" && !val.audio) {
+      ctx.addIssue({
         code: z.ZodIssueCode.custom,
         message: "An audio is required when the `type` is 'audio'",
         path: ["audio"],
       });
+    }
+
+    if (val.type === "text" && !val.text) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "A text is required",
+        path: ["text"],
+      });
+    }
   });
 
 const whatsAppWebhookPayload = z.object({
