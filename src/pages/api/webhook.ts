@@ -2,6 +2,7 @@ import { type NextApiHandler } from "next";
 import { z } from "zod";
 import { env } from "~/env";
 import { whatsapp } from "~/whatsapp";
+import { catchRouteErrors } from "~/shared/catch-route-errors";
 
 const whatsAppQuerySchema = z.object({
   "hub.mode": z.literal("subscribe", { message: "Invalid mode" }),
@@ -108,4 +109,4 @@ const handler: NextApiHandler = async (req, res) => {
   return res.status(404).json({ message: "Method not implemented" });
 };
 
-export default handler;
+export default catchRouteErrors(handler);
