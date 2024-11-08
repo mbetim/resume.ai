@@ -1,5 +1,5 @@
 import axios from "axios";
-import { env } from "./env";
+import { env } from "~/env";
 
 const api = axios.create({
   baseURL: "https://graph.facebook.com/v21.0",

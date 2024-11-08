@@ -1,8 +1,8 @@
 import { type NextApiHandler } from "next";
 import { z } from "zod";
 import { env } from "~/env";
-import { whatsapp } from "~/whatsapp";
 import { catchRouteErrors } from "~/shared/catch-route-errors";
+import { whatsapp } from "~/shared/whatsapp";
 
 const whatsAppQuerySchema = z.object({
   "hub.mode": z.literal("subscribe", { message: "Invalid mode" }),
