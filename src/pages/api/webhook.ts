@@ -117,7 +117,7 @@ const handler: NextApiHandler = async (req, res) => {
       }
     }
 
-    return res.json({ message: "Hello world" });
+    return res.status(200);
   }
 
   return res.status(404).json({ message: "Method not implemented" });
